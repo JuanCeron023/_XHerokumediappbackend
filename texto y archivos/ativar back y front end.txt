@@ -1,0 +1,183 @@
+ng serve --o
+
+
+clean
+package
+build
+isntall
+
+https://mediappfrontend3.herokuapp.com/consulta
+.................................................................
+para mandar a heroku
+
+al bakend se le loineka a la base de datos en postgresql
+que se pone en addons del backend se crea y ya, se modifica
+la direccion y variaables de la base de datos
+
+y luego se siguen las indtuccioens de deploy de heroku
+............................
+para el forntend
+
+hacer npm i
+
+
+Step 2: Copy below dependencies from devDependencies to dependencies:
+
+    "@angular/cli": "^11.0.2",
+    "@angular/compiler-cli": "^10.0.14",
+    "typescript": "~3.9.5"
+
+Step 3: Create heroku-postbuild script in package.json. Under “scripts”, add a “heroku-postbuild” command like so:
+
+"heroku-postbuild": "ng build --prod"
+
+Step 4: Add Node and NPM engines
+
+  "engines": {
+    "node": "12.18.2",
+    "npm": "6.14.5"
+  }
+
+Step 5: Install Server to run your app
+
+npm install express path --save
+
+Step 6: Create a server.js file in the root of the application and paste the following code.
+
+//Install express server
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/niombre carpeta proyecto local'));
+
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/niombre carpeta proyecto local/'}),
+);
+
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
+
+
+Step 7: Change start command In package.json, change the “start” command to node server.js so it becomes:
+
+"start": "node server.js"
+
+step 8: npm build
+
+
+
+y luego se siguen las indtuccioens de deploy de heroku
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+    git init .
+    git remote add origin https://github.com/JuanCeron023/spring-mediapp1-frontend.git
+    git add .
+    git commit -m "cambios v1"
+git push -f origin head:main
+
+
+
+git push origin master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..........................
+..........................
+..........................
+..........................
+..........................
+..........................
+..........................
+..........................
+..........................
+
+
+--en el frontend en envirometn production se pone
+la direccion del backend
+
+-- se pone una rchivo neuvo en raiz lllamando server.js:
+
+//Install express server
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/frontendmediappj'));
+
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/frontendmediappj/'}),
+);
+
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
+
+
+--- en pacjkahe.json se pone:
+  "engines": {
+    "node": "14.16.1",
+    "npm": "7.17.0"
+  }
+
+con npm version saca esos datos
+
+
+---- en devcedpendencies
+    "typescript": "~4.2.3"
+    "express": "^4.17.1",
+
+
+poner en packahe.json:
+  "scripts": {
+    "ng": "ng",
+    "start": "node server.js",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "heroku-postbuild": "ng build --prod"
+  },
+...........................
+
+export class Usuario{
+    idUsuario : number;
+    username: string;
+    password: string;
+    enabled: boolean;
+ 
+}
+
+
+
+  login(usuario: string, contrasena: string) {
+   let usuarios = new Usuario();
+    usuarios.username=usuario;
+    usuarios.password=contrasena;
+    usuarios.idUsuario=parseInt(contrasena);
+    usuarios.enabled=true;
+    return this.http.post<Boolean>(this.url, usuarios);
+  }
